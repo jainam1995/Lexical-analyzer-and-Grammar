@@ -1,0 +1,46 @@
+﻿1.	program → declaration_list
+2.	declaration_list → declaration declaration_list | declaration;
+3.	declaration → variable_declaration | function_declaration
+4.	variable_declaration → type_specifier ID ; 
+5.	type_specifier → int | void | float
+6.	function_declaration → type_specifier ID ( parameters ) compound_statement
+7.	parameters → parameter_list | void | epsilon
+8.	parameter_list → parameter, parameter_list | parameter
+9.	parameter → type_specifier ID 
+10.	compound_statement → { local_declarations statement_list }
+11.	local_declarations →local_declarations variable_declaration | epsilon
+12.	statement_list → statement semi statement_list | epsilon
+13.	statement → expression_statement | compound_statement | selection_statement | iteration_statement | jump_statement | input | output
+14.	selection_statement → if_then_else | if_then 
+15. 	if_then_else → if (expression) then statement else statement
+16. 	if_then → if (expression) then statement
+17.	iteration_statement → while_statement | for_statement
+18.	while_statement → while ( expression ) statement 
+19.	for_statement → for ( expression ; expression ; expression ) statement 
+20.	jump_statement → return ; | return expression ; | break ; | continue ;
+21.	expression_statement → id_assign = expression | simple_expression
+22.	id_assign → ID
+23.	simple_expression  → additive_expression relop additive_expression | additive_expression
+24.	relop → <= | < | > | >= | == | != | && | ||
+25.	additive_expression  → additive_expression addop term | term
+26.	addop → + | -
+27.	term → term mulop factor | factor
+28.	mulop → * | /
+29.	factor → ( expression ) | id_assign | call | num
+30.	call → ID ( arguments )
+31.	arguments → argument_list | epsilon
+32.	argument_list → argument_list , expression | expression
+33.	num → pos_num | neg_num
+34.	pos_num → + value | value
+35.	neg_num → - value
+36.	printable → name, printable_ | string, printable_ | eps
+37.	printable_ → name, printable_ | string, printable_ | name | string
+38.	input → read printable
+39.	output → write printable
+40 	semi → ; | epsilon
+41.	value → INT_NUM | FLOAT_NUM
+42.	digit	→	[0-9]
+43.	letter	→	[a-z A-Z]
+44.	INT_NUM 	→	[+|-]? [digit]+
+45.	FLOAT_NUM	→	[+|-]? [digit]+ . [digit]+
+46.	ID		→	[letter]+ [digit | letter | _]*  
